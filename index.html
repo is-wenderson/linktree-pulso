@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Pulso Clínico | Acesse os links</title>
+  <meta name="description" content="Central de links do Pulso Clínico para QR Code, inscrições, satisfação e perfis oficiais.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#15202b;
+      --bg-soft:#1c2b38;
+      --bg-card:#173126;
+      --accent:#17bf63;
+      --accent-soft:rgba(23,191,99,.14);
+      --text:#edf7ff;
+      --text-dim:rgba(237,247,255,.78);
+      --border:rgba(237,247,255,.18);
+      --shadow:0 28px 70px -24px rgba(0,0,0,.58);
+      --radius-card:28px;
+      --radius-pill:9999px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{
+      min-height:100vh;
+      font-family:'Montserrat',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(23,191,99,.25), transparent 32%),
+        radial-gradient(circle at 82% 88%, rgba(23,191,99,.18), transparent 28%),
+        linear-gradient(180deg, #13202a 0%, #15202b 100%);
+      padding:28px 16px 42px;
+    }
+
+    .shell{
+      width:100%;
+      max-width:560px;
+      margin:0 auto;
+    }
+
+    .card{
+      position:relative;
+      overflow:hidden;
+      background:var(--bg-soft);
+      border:1px solid var(--border);
+      border-radius:var(--radius-card);
+      box-shadow:var(--shadow);
+      padding:34px 24px 28px;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      top:-80px;
+      left:-60px;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:rgba(23,191,99,.18);
+      filter:blur(50px);
+      pointer-events:none;
+    }
+
+    .hero{
+      position:relative;
+      text-align:center;
+      z-index:1;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .brand-mark{
+      width:70px;
+      height:70px;
+      flex:0 0 70px;
+    }
+
+    .brand-divider{
+      width:1px;
+      height:56px;
+      background:rgba(237,247,255,.32);
+    }
+
+    .brand-text{
+      text-align:left;
+      line-height:1;
+    }
+
+    .brand-text .title{
+      display:block;
+      font-size:42px;
+      font-weight:700;
+      letter-spacing:.03em;
+    }
+
+    .brand-text .subtitle{
+      display:block;
+      font-size:16px;
+      letter-spacing:.45em;
+      margin-top:10px;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:14px;
+    }
+
+    .eyebrow .dot{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px var(--accent-soft);
+    }
+
+    h1{
+      margin:0;
+      font-size:31px;
+      line-height:1.12;
+      font-weight:800;
+      letter-spacing:-.01em;
+    }
+
+    .lead{
+      margin:14px auto 0;
+      max-width:430px;
+      font-size:15.8px;
+      line-height:1.65;
+      color:var(--text-dim);
+    }
+
+    .section{
+      margin-top:28px;
+      position:relative;
+      z-index:1;
+    }
+
+    .section-title{
+      margin:0 0 12px;
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--text-dim);
+    }
+
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .link-button,
+    .profile-card{
+      width:100%;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+      border-radius:22px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      transition:transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    .link-button{
+      padding:17px 18px;
+      color:var(--text);
+      box-shadow:0 10px 25px -18px rgba(0,0,0,.6);
+    }
+
+    .link-button:hover,
+    .profile-card:hover{
+      transform:translateY(-1px);
+      border-color:rgba(23,191,99,.75);
+      box-shadow:0 0 0 3px rgba(23,191,99,.12);
+      background:rgba(23,191,99,.08);
+    }
+
+    .link-button.primary{
+      background:linear-gradient(180deg, rgba(23,191,99,.18), rgba(23,191,99,.1));
+    }
+
+    .icon-circle{
+      width:48px;
+      height:48px;
+      min-width:48px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--accent-soft);
+      border:1px solid rgba(23,191,99,.42);
+      color:var(--accent);
+    }
+
+    .link-copy{
+      flex:1;
+      min-width:0;
+    }
+
+    .link-copy strong{
+      display:block;
+      font-size:16px;
+      font-weight:700;
+      color:var(--text);
+      margin-bottom:3px;
+    }
+
+    .link-copy span{
+      display:block;
+      font-size:13.6px;
+      line-height:1.45;
+      color:var(--text-dim);
+    }
+
+    .arrow{
+      color:var(--text-dim);
+      font-size:20px;
+      font-weight:700;
+    }
+
+    .profile-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+
+    .profile-card{
+      padding:16px 18px;
+      color:inherit;
+    }
+
+    .profile-logo{
+      width:54px;
+      min-width:54px;
+      height:54px;
+      border-radius:16px;
+      background:#fff;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      border:1px solid rgba(237,247,255,.18);
+    }
+
+    .profile-logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .profile-copy{
+      flex:1;
+      min-width:0;
+    }
+
+    .profile-copy strong{
+      display:block;
+      font-size:15px;
+      margin-bottom:4px;
+      color:var(--text);
+    }
+
+    .profile-copy span{
+      display:block;
+      font-size:13.3px;
+      line-height:1.45;
+      color:var(--text-dim);
+    }
+
+    .footer-note{
+      text-align:center;
+      font-size:11.8px;
+      color:rgba(237,247,255,.54);
+      margin-top:18px;
+      line-height:1.5;
+    }
+
+    .hint-box{
+      margin-top:24px;
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(23,191,99,.08);
+      border:1px solid rgba(23,191,99,.25);
+      color:var(--text-dim);
+      font-size:13.2px;
+      line-height:1.55;
+      text-align:center;
+    }
+
+    svg{display:block}
+
+    @media (max-width:480px){
+      body{padding:18px 12px 30px;}
+      .card{padding:28px 18px 22px; border-radius:24px;}
+      .brand{gap:12px;}
+      .brand-mark{width:58px;height:58px;flex-basis:58px;}
+      .brand-text .title{font-size:34px;}
+      .brand-text .subtitle{font-size:13px; letter-spacing:.38em;}
+      h1{font-size:27px;}
+      .lead{font-size:14.8px;}
+      .link-button,.profile-card{border-radius:20px;}
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="card">
+      <div class="hero">
+        <div class="brand" aria-label="Pulso Clínico">
+          <svg class="brand-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M50 8L82 26V74L50 92L18 74V26L50 8Z" stroke="white" stroke-width="4"/>
+            <path d="M3 50H28L40 18L52 72L64 38L74 50H97" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="52" cy="72" r="5.5" fill="white"/>
+            <circle cx="40" cy="18" r="5.5" fill="white"/>
+          </svg>
+          <div class="brand-divider"></div>
+          <div class="brand-text">
+            <span class="title">PULSO</span>
+            <span class="subtitle">CLÍNICO</span>
+          </div>
+        </div>
+
+        <div class="eyebrow"><span class="dot"></span>Central de links</div>
+        <h1>Todos os acessos do Pulso Clínico em um só lugar</h1>
+        <p class="lead">Use esta página para abrir rapidamente o formulário de satisfação, manifestar interesse nas próximas edições e acessar os perfis oficiais do Pulso Clínico e dos parceiros.</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Acessos principais</h2>
+        <div class="link-list">
+          <a class="link-button primary" href="https://pesquisa-pulso.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <div class="icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 7H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 17H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 3H17C18.1046 3 19 3.89543 19 5V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="link-copy">
+              <strong>Formulário de satisfação</strong>
+              <span>Receba o feedback do evento em um só clique.</span>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+
+          <a class="link-button" href="https://pulso-clinico-forms.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <div class="icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M17 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 9H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M5 5H19C20.1046 5 21 5.89543 21 7V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V7C3 5.89543 3.89543 5 5 5Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 13H8.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M12 13H12.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M16 13H16.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="link-copy">
+              <strong>Inscreva-se nos próximos eventos</strong>
+              <span>Cadastre seu interesse para receber novidades das próximas edições.</span>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Links do evento</h2>
+        <div class="link-list" id="event-links">
+          <a class="link-button" href="#" target="_blank" rel="noopener noreferrer">
+            <div class="icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 14L14 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8.5 16.5L6.5 18.5C5.11929 19.8807 2.88071 19.8807 1.5 18.5C0.119288 17.1193 0.119288 14.8807 1.5 13.5L5 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M15.5 7.5L17.5 5.5C18.8807 4.11929 21.1193 4.11929 22.5 5.5C23.8807 6.88071 23.8807 9.11929 22.5 10.5L19 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="link-copy">
+              <strong>Link de parceiro / conteúdo do evento</strong>
+              <span>Substitua este link por uma ação específica do parceiro quando necessário.</span>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Perfis oficiais e parceiros</h2>
+        <div class="profile-grid">
+          <a class="profile-card" href="https://www.instagram.com/pulsoclinico.br/" target="_blank" rel="noopener noreferrer">
+            <div class="profile-logo"><img src="pulsoclinico.jpg" alt="Pulso Clínico"></div>
+            <div class="profile-copy">
+              <strong>Pulso Clínico</strong>
+              <span>Perfil oficial do projeto e das próximas ações da comunidade.</span>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+
+          <a class="profile-card" href="https://www.instagram.com/healthcompbr/" target="_blank" rel="noopener noreferrer">
+            <div class="profile-logo"><img src="healthcomp.jpg" alt="Healthcomp"></div>
+            <div class="profile-copy">
+              <strong>Healthcomp</strong>
+              <span>Conheça mais sobre a Healthcomp e acompanhe o perfil oficial.</span>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+
+          <a class="profile-card" href="https://www.instagram.com/nov4gestao/" target="_blank" rel="noopener noreferrer">
+            <div class="profile-logo"><img src="novagestao.jpg" alt="Nov4 Gestão Empresarial"></div>
+            <div class="profile-copy">
+              <strong>Nov4 Gestão Empresarial</strong>
+              <span>Acesse o perfil oficial da Nov4 e acompanhe seus conteúdos.</span>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+
+          <a class="profile-card" href="https://www.instagram.com/conceive_sistemas/" target="_blank" rel="noopener noreferrer">
+            <div class="profile-logo"><img src="conceive.jpg" alt="Conceive"></div>
+            <div class="profile-copy">
+              <strong>Conceive</strong>
+              <span>Visite o perfil oficial da Conceive e conheça mais da marca.</span>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        Pulso Clínico · Central de links
+      </div>
+    </section>
+  </main>
+</body>
+</html>
